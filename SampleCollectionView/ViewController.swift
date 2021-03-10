@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    private let catImage: [String] = ["cat1","cat2",""]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -40,5 +42,9 @@ extension ViewController: UICollectionViewDataSource {
 
 
 extension ViewController: UICollectionViewDelegateFlowLayout{
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let horizontalSpace : CGFloat = 20
+            let cellSize : CGFloat = self.view.bounds.width / 3 - horizontalSpace
+            return CGSize(width: cellSize, height: cellSize)
+        }
 }
